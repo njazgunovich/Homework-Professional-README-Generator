@@ -8,21 +8,45 @@ var otherEmployees = [];
 function buildHtml() {
     var employeeHtml = "";
     for (var i = 0; i < otherEmployees.length; i++) {
-        employeeHtml += `<div>${otherEmployees[i].getRole()}</div>`;
+        employeeHtml += `<div class = "card">
+            <div class = "card-header"> 
+                <h4>${otherEmployees[i].getName()}</h4>
+                <h4> ${otherEmployees[i].getRole()}</h4>
+            </div>
+            <div class = "main-section">
+                <div class = "info-area">
+                    <p>id: ${otherEmployees[i].id}</p>
+                </div>
+                <div class = "info-area">
+                    <p>email: ${otherEmployees[i].email}</p>
+    
+                </div>
+                <div class = "info-area">
+                    <p>${otherEmployees[i].getRole() ==="Engineer" ? `GitHub: ${otherEmployees[i].github}` : `School: ${otherEmployees[i].school}` }</p>
+                </div>
+            </div>
+        </div>`;
 
     }
     var html = `<!DOCTYPE html>
     <html>
-    <head>
-    <title>Team Information</title>
-    </head>
+        <head>
+            <title>Team Information</title>
+            <link rel="stylesheet" href = "./style.css">
+        </head>
     
-    <body>
-    <div>
-    Manager
-    ${manager.getName()}
-    </div>
-    ${employeeHtml}
+        <body>
+            <header>
+                <h1> My Team </h1>
+            </header>
+            <div class= "new-section"> 
+                <div>
+                    Manager
+                    ${manager.getName()}
+                </div>
+                ${employeeHtml}
+            </div>
+        </body>
     </html>`;
     fs.writeFile('./dist/index.html', html, function() {});
 }
